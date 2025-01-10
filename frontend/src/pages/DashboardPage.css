@@ -1,13 +1,42 @@
+/* Conteneur principal */
 .dashboard-container {
+    display: flex;
+    flex-direction: column; /* Organisation verticale */
+    justify-content: center; /* Centre verticalement */
+    align-items: center; /* Centre horizontalement */
+    min-height: 40vh; /* Hauteur minimale pour centrer */
     padding: 20px;
-    text-align: center;
   }
   
+  /* Titre principal */
+  h1 {
+    font-size: 28px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px; /* Espace sous le titre */
+  }
+  
+  /* Sous-titre */
+  p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 30px; /* Espace sous le sous-titre */
+  }
+  
+  /* Graphique */
   .chart-container {
-    width: 80%;
-    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px; /* Limite la largeur du graphique */
     padding: 20px;
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  }
+  
+  /* Espacement général pour harmoniser */
+  .chart-container canvas {
+    max-width: 100%; /* Adaptabilité responsive */
   }

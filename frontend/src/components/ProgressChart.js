@@ -1,21 +1,42 @@
 import React from 'react';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 function ProgressChart({ data }) {
+  const chartData = {
+    labels: data.map((item) => item.date),
+    datasets: [
+      {
+        label: 'Progrès',
+        data: data.map((item) => item.progress),
+        fill: true,
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        tension: 0.4, // Ajout de courbes lissées
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top',
+      },
+    },
+    animation: {
+      duration: 1000, // Durée de l’animation (1 seconde)
+      easing: 'easeOutQuad',
+    },
+  };
+
   return (
-    <LineChart
-      width={500}
-      height={300}
-      data={data}
-      margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
-    >
-      <CartesianGrid stroke="#ccc" />
-      <XAxis dataKey="date" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Line type="monotone" dataKey="progress" stroke="#82ca9d" />
-    </LineChart>
+    <div className="chart-container">
+      <Line data={chartData} options={options} />
+    </div>
   );
 }
 
